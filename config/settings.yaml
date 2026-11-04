@@ -11,6 +11,7 @@ data_collection:
   start_date: "2024-01-01"
   end_date: "2024-12-31"
   
+  
   # OpenAQ API settings
   openaq:
     base_url: "https://api.openaq.org/v2"
@@ -21,6 +22,7 @@ data_collection:
     retry_attempts: 3
     retry_delay_seconds: 5
     rate_limit_pause_seconds: 1.0
+    
   
   # Open-Meteo API settings
   open_meteo:
