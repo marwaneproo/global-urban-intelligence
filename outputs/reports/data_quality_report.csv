@@ -1,0 +1,6 @@
+dataset,check,passed,detail
+air_quality_raw,required_columns,True,missing=[]
+air_quality_raw,date_range,True,"invalid=0, out_of_range=0"
+air_quality_raw,no_duplicates,True,duplicates=0
+air_quality_raw,missingness,True,all_within_threshold
+air_quality_raw,OVERALL,True,"total_rows=3660, total_columns=10"

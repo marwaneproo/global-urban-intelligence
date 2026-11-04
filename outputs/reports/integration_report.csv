@@ -1,0 +1,13 @@
+metric,value
+step,air_quality_weather_integration
+join_type,left
+join_keys,"['city', 'date']"
+status,success
+aq_rows,3660
+weather_rows,1830
+merged_rows,3660
+aq_unique_keys,1830
+weather_unique_keys,1830
+matched_keys,1830
+unmatched_aq_keys,0
+match_rate_pct,100.0

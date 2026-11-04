@@ -1,0 +1,108 @@
+# Project Settings for 04-Global-Urban-Intelligence
+project:
+  name: "04-global-urban-intelligence"
+  version: "1.0.0"
+  description: "Global Urban Intelligence: Data-Driven Analysis of Urban Environmental Conditions"
+  author: "Data & AI Engineering Lab"
+
+# Data collection settings
+data_collection:
+  # Date range for historical data collection
+  start_date: "2024-01-01"
+  end_date: "2024-12-31"
+  
+  # OpenAQ API settings
+  openaq:
+    base_url: "https://api.openaq.org/v2"
+    parameters: ["pm25", "pm10"]
+    limit_per_page: 1000
+    max_pages: 10
+    timeout_seconds: 30
+    retry_attempts: 3
+    retry_delay_seconds: 5
+    rate_limit_pause_seconds: 1.0
+  
+  # Open-Meteo API settings
+  open_meteo:
+    base_url: "https://archive-api.open-meteo.com/v1/archive"
+    variables:
+      - "temperature_2m_mean"
+      - "temperature_2m_min"
+      - "temperature_2m_max"
+      - "relative_humidity_2m_mean"
+      - "precipitation_sum"
+      - "wind_speed_10m_mean"
+      - "wind_direction_10m_dominant"
+    timeout_seconds: 30
+    retry_attempts: 3
+  
+  # World Bank API settings
+  world_bank:
+    base_url: "https://api.worldbank.org/v2"
+    indicators:
+      - id: "SP.POP.TOTL"
+        name: "Total Population"
+      - id: "SP.POP.GROW"
+        name: "Population Growth (%)"
+      - id: "SP.URB.TOTL.IN.ZS"
+        name: "Urban Population (%)"
+      - id: "SP.URB.GROW"
+        name: "Urban Population Growth (%)"
+    year_range: "2018:2023"
+    per_page: 100
+    timeout_seconds: 30
+
+# Synthetic data settings (fallback)
+synthetic:
+  random_seed: 42
+  n_days: 365
+  label: "SYNTHETIC_DEMO"
+  pm25_range: [5.0, 75.0]
+  pm10_range: [10.0, 120.0]
+  temperature_range: [-5.0, 42.0]
+  humidity_range: [20.0, 95.0]
+  precipitation_range: [0.0, 50.0]
+  wind_speed_range: [0.0, 35.0]
+
+# Data quality settings
+data_quality:
+  pm25_valid_range: [0.0, 500.0]
+  pm10_valid_range: [0.0, 600.0]
+  temperature_valid_range: [-50.0, 60.0]
+  humidity_valid_range: [0.0, 100.0]
+  latitude_valid_range: [-90.0, 90.0]
+  longitude_valid_range: [-180.0, 180.0]
+  max_missing_pct: 50.0
+  duplicate_check: true
+
+# Visualization settings
+visualization:
+  style: "seaborn-v0_8-whitegrid"
+  figsize_default: [12, 8]
+  figsize_wide: [16, 8]
+  figsize_tall: [12, 16]
+  figsize_square: [10, 10]
+  dpi: 150
+  export_format: "png"
+  color_palette: "Set2"
+  city_colors:
+    Casablanca: "#e74c3c"
+    Rabat: "#3498db"
+    Paris: "#2ecc71"
+    Madrid: "#f39c12"
+    Lisbon: "#9b59b6"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "outputs/reports/pipeline.log"
+
+# Output paths
+paths:
+  raw_data: "data/raw"
+  interim_data: "data/interim"
+  processed_data: "data/processed"
+  figures: "outputs/figures"
+  reports: "outputs/reports"
+  datasets: "outputs/datasets"

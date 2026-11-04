@@ -1,0 +1,59 @@
+{
+  "collection_timestamp_utc": "2026-11-04T20:08:54.938010+00:00",
+  "mode": "demo",
+  "project_root": "D:\\Documents\\DATA  AI ENGINEERING\\global-urban-intelligence\\04-global-urban-intelligence",
+  "datasets": {
+    "air_quality": {
+      "file": "air_quality_raw.csv",
+      "rows": 3660,
+      "columns": [
+        "city",
+        "country",
+        "parameter",
+        "value",
+        "unit",
+        "date",
+        "latitude",
+        "longitude",
+        "source",
+        "station_id"
+      ],
+      "source": "synthetic_demo"
+    },
+    "weather": {
+      "file": "weather_raw.csv",
+      "rows": 1830,
+      "columns": [
+        "date",
+        "city",
+        "country",
+        "latitude",
+        "longitude",
+        "temperature_mean",
+        "temperature_min",
+        "temperature_max",
+        "humidity_mean",
+        "precipitation_sum",
+        "wind_speed_mean",
+        "wind_direction_dominant",
+        "source"
+      ],
+      "source": "synthetic_demo"
+    },
+    "demographics": {
+      "file": "demographics_raw.csv",
+      "rows": 96,
+      "columns": [
+        "country",
+        "country_code",
+        "indicator_id",
+        "indicator_name",
+        "year",
+        "value",
+        "geographic_level",
+        "source"
+      ],
+      "source": "synthetic_demo"
+    }
+  }
+}

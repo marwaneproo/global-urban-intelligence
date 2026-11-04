@@ -1,0 +1,97 @@
+country,country_code,indicator_id,indicator_name,year,value,geographic_level,source
+Morocco,MA,SP.POP.TOTL,Total Population,2018,36524836.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.TOTL,Total Population,2019,36931087.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.TOTL,Total Population,2020,37413640.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.TOTL,Total Population,2021,37905983.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.TOTL,Total Population,2022,38272081.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.TOTL,Total Population,2023,38731488.0,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2018,1.28,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2019,1.24,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2020,1.18,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2021,1.23,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2022,1.18,country,SYNTHETIC_DEMO
+Morocco,MA,SP.POP.GROW,Population Growth (%),2023,1.18,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2018,63.52,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2019,63.61,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2020,63.93,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2021,64.34,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2022,64.6,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.TOTL.IN.ZS,Urban Population (%),2023,65.03,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2018,1.71,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2019,1.66,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2020,1.95,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2021,1.78,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2022,1.81,country,SYNTHETIC_DEMO
+Morocco,MA,SP.URB.GROW,Urban Population Growth (%),2023,1.66,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2018,66972781.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2019,67206546.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2020,67345053.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2021,67623596.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2022,67777593.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.TOTL,Total Population,2023,67996463.0,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2018,0.27,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2019,0.39,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2020,0.3,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2021,0.25,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2022,0.34,country,SYNTHETIC_DEMO
+France,FR,SP.POP.GROW,Population Growth (%),2023,0.24,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2018,80.72,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2019,80.65,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2020,80.87,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2021,81.17,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2022,81.37,country,SYNTHETIC_DEMO
+France,FR,SP.URB.TOTL.IN.ZS,Urban Population (%),2023,81.47,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2018,0.59,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2019,0.58,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2020,0.53,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2021,0.56,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2022,0.58,country,SYNTHETIC_DEMO
+France,FR,SP.URB.GROW,Urban Population Growth (%),2023,0.65,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2018,47017181.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2019,46958848.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2020,47110251.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2021,47121887.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2022,47154436.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.TOTL,Total Population,2023,47266054.0,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2018,0.2,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2019,0.19,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2020,0.02,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2021,0.07,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2022,0.13,country,SYNTHETIC_DEMO
+Spain,ES,SP.POP.GROW,Population Growth (%),2023,0.2,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2018,80.45,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2019,80.58,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2020,80.59,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2021,80.68,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2022,80.98,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.TOTL.IN.ZS,Urban Population (%),2023,81.14,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2018,0.3,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2019,0.35,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2020,0.32,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2021,0.27,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2022,0.32,country,SYNTHETIC_DEMO
+Spain,ES,SP.URB.GROW,Urban Population Growth (%),2023,0.38,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2018,10298209.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2019,10347332.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2020,10107305.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2021,10248673.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2022,10181307.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.TOTL,Total Population,2023,10131474.0,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2018,-0.29,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2019,-0.5,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2020,-0.32,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2021,-0.26,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2022,-0.15,country,SYNTHETIC_DEMO
+Portugal,PT,SP.POP.GROW,Population Growth (%),2023,-0.35,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2018,65.42,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2019,65.65,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2020,65.99,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2021,66.13,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2022,66.25,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.TOTL.IN.ZS,Urban Population (%),2023,66.55,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2018,0.41,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2019,0.48,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2020,0.34,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2021,0.37,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2022,0.37,country,SYNTHETIC_DEMO
+Portugal,PT,SP.URB.GROW,Urban Population Growth (%),2023,0.28,country,SYNTHETIC_DEMO
