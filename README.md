@@ -1,94 +1,132 @@
-# Global Urban Intelligence: Data-Driven Analysis of Urban Environmental Conditions
+# Global Urban Intelligence
+### Data Engineering, Environmental Analytics & Urban Intelligence
 
-[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Architecture](https://img.shields.io/badge/Architecture-Modular%20ETL%20%26%20Analytics-orange.svg)](#architecture)
-[![Tests](https://img.shields.io/badge/Tests-27%20Passed-brightgreen.svg)](#testing-and-quality-assurance)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
+![Data Engineering](https://img.shields.io/badge/Domain-Data%20Engineering-orange)
+![Analytics](https://img.shields.io/badge/Focus-Data%20Analytics-green)
+![Status](https://img.shields.io/badge/Project-Development-blueviolet)
 
-Part of the **`data-ai-engineering-lab/`** repository.
+**Global Urban Intelligence** is an end-to-end data engineering and analytics project designed to collect, process, integrate, and analyze urban environmental data from multiple open data sources.
 
----
+The project combines air quality, meteorological, and demographic indicators to explore environmental conditions across selected European and Mediterranean cities.
 
-## 1. Executive Summary & Vision
-
-Metropolitan regions globally face intertwined environmental, atmospheric, and demographic pressures. Particulate matter pollution ($PM_{2.5}$, $PM_{10}$), thermal inversions, surface weather volatility, and rapid population densities directly impact municipal public health, infrastructure resilience, and urban liveability.
-
-However, urban environmental data is characteristically heterogeneous—fragmented across isolated monitoring station APIs, differing spatial boundaries, irregular time resolutions, and conflicting physical units.
-
-**Global Urban Intelligence** establishes an end-to-end, reproducible data engineering and analytics system that ingests, harmonizes, profiles, and analyzes multi-domain urban datasets across European and Mediterranean cities:
-- **Casablanca** (Morocco)
-- **Rabat** (Morocco)
-- **Paris** (France)
-- **Madrid** (Spain)
-- **Lisbon** (Portugal)
-
-The platform provides data-driven evidence to bridge raw multi-sensor feeds into actionable municipal policy directives.
+It demonstrates a reproducible workflow covering data ingestion, data quality, transformation, integration, exploratory analysis, statistical methods, and data visualization.
 
 ---
 
-## 2. Problem Statement & Research Questions
+## 1. Project Overview
 
-### Core Analytical Inquiries
-1. **Pollution Disparity**: How do particulate matter concentrations ($PM_{2.5}$ and $PM_{10}$) vary between southern Mediterranean and western European cities?
-2. **Distributional Dynamics**: What are the underlying statistical distributions, skewness, and extreme value frequencies across urban monitoring stations?
-3. **Meteorological Interactions**: What quantitative associations exist between ambient temperature, wind velocity, humidity, precipitation, and pollutant accumulation?
-4. **Seasonal Profiles**: Do winter temperature drops exacerbate atmospheric boundary layer trapping (thermal inversions)?
-5. **Data Quality & Integrity**: How do missing values, sensor anomalies, and spatial coverage gaps impact analytical confidence?
-6. **Macro vs Micro Conflation**: How can national demographic indicators provide context without conflating country-level population with city boundaries?
-7. **Evidence-Based Recommendations**: What targeted interventions can municipal authorities implement to mitigate high-exposure episodes?
+Urban environments face interconnected challenges involving air pollution, changing weather conditions, and population growth.
 
-> **⚠️ Methodological Precaution**: Correlation does not establish causation. Meteorological-pollutant interactions highlight dispersion dynamics but do not definitively prove emission origins without source apportionment chemistry.
+However, environmental datasets are often distributed across different platforms, APIs, geographical scales, and data formats.
+
+This project addresses these challenges by building a modular pipeline that transforms heterogeneous datasets into a unified analytical dataset.
+
+### Target Cities
+
+| City | Country |
+|---|---|
+| Casablanca | Morocco |
+| Rabat | Morocco |
+| Paris | France |
+| Madrid | Spain |
+| Lisbon | Portugal |
+
+### Main Objectives
+
+- Collect environmental data from open APIs.
+- Build a reproducible data ingestion pipeline.
+- Assess data quality and identify missing or inconsistent values.
+- Clean and standardize heterogeneous datasets.
+- Engineer meaningful temporal and environmental features.
+- Integrate datasets from multiple sources.
+- Perform exploratory and statistical analysis.
+- Generate informative visualizations.
+- Translate analytical observations into evidence-based insights.
 
 ---
 
-## 3. Data Sources & Provenance
+## 2. Research Questions
 
-The architecture supports both automated live REST API ingestion and offline reproducible synthetic demonstration modes:
+1. How do PM2.5 and PM10 concentrations differ across the selected cities?
+2. How are pollution levels distributed across different locations and periods?
+3. What relationships exist between air quality and meteorological variables?
+4. How do temperature, humidity, wind speed, and precipitation relate to particulate concentrations?
+5. Are there observable seasonal patterns in environmental conditions?
+6. How do missing values, measurement anomalies, and inconsistent data formats affect analytical reliability?
+7. What limitations arise when combining city-level environmental data with country-level demographic indicators?
+8. What insights can be derived to support environmental monitoring and urban planning?
 
-| Domain | Source Provider | Reference Link | Variables Collected | Temporal Coverage |
-| :--- | :--- | :--- | :--- | :--- |
-| **Air Quality** | OpenAQ API (v2) | [OpenAQ Docs](https://docs.openaq.org/) | $PM_{2.5}$, $PM_{10}$, Station ID, Coordinates, Timestamp | 2024 Daily |
-| **Meteorology** | Open-Meteo Historical | [Open-Meteo Docs](https://open-meteo.com/en/docs/historical-weather-api) | Mean/Min/Max Temperature, Relative Humidity, Wind Speed/Direction, Precipitation | 2024 Daily |
-| **Demographics** | World Bank API | [World Bank Data](https://datahelpdesk.worldbank.org/) | Total Population, Population Growth (%), Urban Population (%), Urban Growth (%) | 2018–2023 |
-
-### Provenance & Fallback Protocol
-When live external APIs encounter rate limitations, network isolation, or authentication constraints, the pipeline executes an automated synthetic fallback generator with a fixed random seed (`42`). Every observation carries an immutable `source` tag (`"OpenAQ"`, `"Open-Meteo"`, `"World Bank"`, or `"SYNTHETIC_DEMO"`), guaranteeing auditability and preventing contaminated analysis.
-
-> **Important Demographics Rule**: Country-level population figures from the World Bank are explicitly tagged with `demographic_level = "country"`. They are never represented as city-level counts.
+**Methodological principle:** Correlation does not imply causation. Statistical relationships are interpreted carefully and do not independently establish the causes of pollution.
 
 ---
 
-## 4. End-to-End Pipeline Architecture
+## 3. Data Sources
+
+| Domain | Source | Main Variables |
+|---|---|---|
+| Air Quality | [OpenAQ](https://openaq.org/) | PM2.5, PM10, monitoring stations, coordinates, timestamps |
+| Meteorology | [Open-Meteo](https://open-meteo.com/) | Temperature, humidity, wind speed, wind direction, precipitation |
+| Demographics | [World Bank Open Data](https://data.worldbank.org/) | Total population, population growth, urban population indicators |
+
+### Data Provenance
+
+Each dataset should preserve its source information:
+
+- `OpenAQ`: air quality observations.
+- `Open-Meteo`: meteorological observations.
+- `World Bank`: demographic indicators.
+- `SYNTHETIC_DEMO`: generated demonstration data.
+
+When external APIs are unavailable, synthetic data can be used for pipeline testing and reproducibility. Synthetic observations must never be presented as real environmental measurements.
+
+**Important:** Country-level population indicators must not be interpreted as city-level population statistics.
+
+---
+
+## 4. Data Engineering Architecture
 
 ```mermaid
 flowchart TD
-    A1[OpenAQ API v2] --> B1[Air Quality Collector]
-    A2[Open-Meteo API] --> B2[Weather Collector]
-    A3[World Bank API] --> B3[Demographics Collector]
-    
-    B1 --> C[Raw Storage Layer: data/raw/]
-    B2 --> C
-    B3 --> C
-    
-    C --> D[Data Profiling & Schema Validation]
-    D --> E[Data Cleaning: Duplicate & Unit Normalization]
-    E --> F[Interim Storage: data/interim/]
-    
-    F --> G[Feature Engineering: Date, Season, AQI Category]
-    G --> H[Deterministic Data Integration: LEFT JOIN on City + Date]
-    H --> I[Processed Analytical Mart: data/processed/urban_analytics.csv]
-    
-    I --> J1[Descriptive & Non-Parametric Statistics]
-    I --> J2[Correlation & OLS Regression]
-    I --> J3[SVD-based PCA & K-Means Regimes]
-    
-    J1 --> K[Publication Visualization Gallery: 30 Visual Types]
-    J2 --> K
-    J3 --> K
-    
-    K --> L[Automated Reports: outputs/reports/]
-    K --> M[Interactive Dashboards: outputs/figures/]
+    A[OpenAQ API] --> D[Data Collection]
+    B[Open-Meteo API] --> D
+    C[World Bank API] --> D
+
+    D --> E[Raw Data Storage]
+    E --> F[Data Profiling]
+    F --> G[Data Validation]
+    G --> H[Data Cleaning]
+
+    H --> I[Interim Data Storage]
+    I --> J[Feature Engineering]
+    J --> K[Data Integration]
+
+    K --> L[Processed Analytical Dataset]
+
+    L --> M[Exploratory Data Analysis]
+    L --> N[Statistical Analysis]
+    L --> O[Data Visualization]
+
+    M --> P[Analytical Insights]
+    N --> P
+    O --> P
+
+    P --> Q[Reports and Recommendations]
 ```
+
+### Pipeline Stages
+
+| Stage | Description |
+|---|---|
+| Data Collection | Extract data from APIs and generate demonstration datasets when required. |
+| Raw Storage | Preserve original extracts and metadata. |
+| Data Profiling | Examine schemas, data types, missing values, duplicates, and distributions. |
+| Data Validation | Check expected columns, ranges, formats, and consistency. |
+| Data Cleaning | Handle missing values, duplicates, inconsistent units, and invalid observations. |
+| Transformation | Create temporal, seasonal, and environmental features. |
+| Integration | Combine datasets using documented geographical and temporal keys. |
+| Analytical Processing | Prepare the final dataset for statistical analysis and visualization. |
+| Reporting | Generate charts, reports, and analytical observations. |
 
 ---
 
@@ -96,238 +134,414 @@ flowchart TD
 
 ```text
 04-global-urban-intelligence/
-├── README.md                           <- Executive system documentation & gallery
-├── requirements.txt                    <- Pinned dependencies
-├── .gitignore                          <- Git ignore rules
-├── .env.example                        <- Template environment variables
-├── PROGRESS.md                         <- Milestone progress tracking
-├── run_pipeline.py                     <- Master CLI pipeline entry point
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── .env.example
+├── PROGRESS.md
+├── run_pipeline.py
 │
 ├── config/
-│   ├── cities.json                     <- Target city coordinates, timezones & ISO codes
-│   └── settings.yaml                   <- Pipeline thresholds, visual styles & parameters
+│   ├── cities.json
+│   └── settings.yaml
 │
 ├── data/
-│   ├── DATA_DICTIONARY.md              <- Full schema, types, units & range definitions
-│   ├── raw/                            <- Immutable raw extracts (CSV + JSON metadata)
-│   ├── interim/                        <- Cleaned & transformed intermediate staging
+│   ├── DATA_DICTIONARY.md
+│   ├── raw/
+│   ├── interim/
 │   └── processed/
-│       └── urban_analytics.csv         <- Final integrated analytical data mart
 │
 ├── notebooks/
-│   ├── 01-business-understanding.ipynb <- Project framing & stakeholder mapping
-│   ├── 02-data-collection.ipynb        <- API clients & synthetic fallback generators
-│   ├── 03-data-profiling.ipynb         <- Schema checks, missingness & anomaly scans
-│   ├── 04-data-cleaning.ipynb          <- Unit standardization & zero-fill avoidance
-│   ├── 05-data-transformation.ipynb    <- Temporal features, AQI categories & aggregations
-│   ├── 06-data-integration.ipynb       <- Multi-dataset join diagnostics & validation
-│   ├── 07-exploratory-analysis.ipynb   <- Univariate, bivariate & seasonal EDA
-│   ├── 08-statistical-analysis.ipynb   <- Normality, correlation, PCA & clustering
-│   ├── 09-data-visualization.ipynb     <- Full visual gallery demonstration
-│   └── 10-insights-and-recommendations.ipynb <- Policy synthesis & municipal roadmap
+│   ├── 01-business-understanding.ipynb
+│   ├── 02-data-collection.ipynb
+│   ├── 03-data-profiling.ipynb
+│   ├── 04-data-cleaning.ipynb
+│   ├── 05-data-transformation.ipynb
+│   ├── 06-data-integration.ipynb
+│   ├── 07-exploratory-analysis.ipynb
+│   ├── 08-statistical-analysis.ipynb
+│   ├── 09-data-visualization.ipynb
+│   └── 10-insights-and-recommendations.ipynb
 │
 ├── src/
-│   ├── __init__.py
-│   ├── data_collection/                <- API connectors & synthetic generators
-│   │   ├── air_quality.py
-│   │   ├── weather.py
-│   │   ├── demographics.py
-│   │   └── collect_all.py
-│   ├── preprocessing/                  <- Validation, cleaning, transforms & joins
-│   │   ├── validation.py
-│   │   ├── cleaning.py
-│   │   ├── transformation.py
-│   │   └── integration.py
-│   ├── analysis/                       <- Statistical models & insight generators
-│   │   ├── descriptive.py
-│   │   ├── statistical.py
-│   │   └── insights.py
-│   └── visualization/                  <- Matplotlib, Seaborn & Plotly charting modules
-│       ├── distributions.py
-│       ├── comparisons.py
-│       ├── temporal.py
-│       ├── correlations.py
-│       ├── geographic.py
-│       └── dashboard_charts.py
+│   ├── data_collection/
+│   ├── preprocessing/
+│   ├── analysis/
+│   └── visualization/
 │
 ├── outputs/
-│   ├── figures/                        <- 30 publication charts (PNG + interactive HTML)
-│   ├── reports/                        <- Quality, correlation, cleaning & summary reports
-│   └── datasets/                       <- Mirrored datasets & city summaries
+│   ├── figures/
+│   ├── reports/
+│   └── datasets/
 │
 └── tests/
-    ├── test_collection.py              <- Collection schema & synthetic generator tests
-    ├── test_cleaning.py                <- Cleaning logic & zero-replacement guards
-    ├── test_transformation.py          <- Calendar features & AQI breakpoint tests
-    └── test_pipeline.py                <- End-to-end integration & output file tests
+    ├── test_collection.py
+    ├── test_cleaning.py
+    ├── test_transformation.py
+    └── test_pipeline.py
 ```
 
 ---
 
-## 6. Comprehensive Visualization Gallery (30 Chart Types)
+## 6. Visualization Gallery
 
-All charts are exported at 150 DPI in `outputs/figures/` using a standardized aesthetic palette:
+The following gallery embeds the generated figures directly from `outputs/figures/`.
 
-### Distribution Analysis
-| # | Chart Type | Artifact | Description & Key Analytical Insight |
-|---|:---|:---|:---|
-| 01 | **Histogram** | ![01](outputs/figures/01_pm25_histogram.png) | Right-skewed distribution of $PM_{2.5}$ across cities showing recurrent episodic spikes. |
-| 02 | **Histogram with KDE** | ![02](outputs/figures/02_pm25_histogram_kde.png) | Continuous probability density overlay contrasting city-specific modal concentrations. |
-| 03 | **Box Plot** | ![03](outputs/figures/03_pm25_boxplot.png) | Median and interquartile dispersion highlighting outlier events beyond $1.5 \times IQR$. |
-| 04 | **Violin Plot** | ![04](outputs/figures/04_pm25_violin.png) | Multimodal density shape showing bi-seasonal concentration clustering. |
-| 05 | **Density Curve** | ![05](outputs/figures/05_pm25_density.png) | Comparative kernel densities revealing broader variance in continental urban centers. |
-| 06 | **ECDF Plot** | ![06](outputs/figures/06_pm25_ecdf.png) | Empirical cumulative probability indicating percentage of days exceeding WHO targets. |
+**Note:** Images appear on GitHub when the corresponding PNG files exist in the repository and have been pushed to GitHub.
 
-### Comparative Analysis
-| # | Chart Type | Artifact | Description & Key Analytical Insight |
-|---|:---|:---|:---|
-| 07 | **Bar Chart** | ![07](outputs/figures/07_mean_pm25_barchart.png) | Direct comparison of mean observed $PM_{2.5}$ with value annotations per city. |
-| 08 | **Grouped Bar** | ![08](outputs/figures/08_pm_grouped_bar.png) | Side-by-side evaluation of fine ($PM_{2.5}$) versus coarse ($PM_{10}$) particulates. |
-| 09 | **Horizontal Bar** | ![09](outputs/figures/09_temperature_horizontal_bar.png) | Ranked thermal gradients showing Mediterranean vs Continental European averages. |
-| 10 | **Cleveland Dot Plot** | ![10](outputs/figures/10_pm25_dot_plot.png) | High data-to-ink ratio ranking median pollutant levels across urban centers. |
-| 11 | **Matrix Heatmap** | ![11](outputs/figures/11_monthly_city_heatmap.png) | City $\times$ Month particulate matrix pinpointing peak winter heating months. |
-| 12 | **Small Multiples** | ![12](outputs/figures/12_small_multiples.png) | Faceted independent subplots comparing local distribution shapes without visual clutter. |
+### 6.1 Distribution Analysis
 
-### Relationship & Correlation Analysis
-| # | Chart Type | Artifact | Description & Key Analytical Insight |
-|---|:---|:---|:---|
-| 13 | **Bivariate Scatter** | ![13](outputs/figures/13_scatter_temp_pm25.png) | Scatter plot mapping temperature against pollutant concentration. |
-| 14 | **Scatter with Regression** | ![14](outputs/figures/14_regression_temp_pm25.png) | Ordinary Least Squares (OLS) fit with $R^2$, slope, and $p$-value annotations. |
-| 15 | **Pair Plot** | ![15](outputs/figures/15_variables_pairplot.png) | Joint pairwise scatter grid with diagonal univariate KDEs. |
-| 16 | **Bubble Chart** | ![16](outputs/figures/16_bubble_chart.png) | 3D feature representation: Wind Speed ($X$), $PM_{2.5}$ ($Y$), and Humidity (Bubble Size). |
-| 17 | **Correlation Heatmap** | ![17](outputs/figures/17_correlation_heatmap.png) | Pearson correlation matrix with lower-triangle mask and divergent color scale. |
+| Histogram | Histogram with KDE |
+|---|---|
+| ![PM2.5 Histogram](outputs/figures/01_pm25_histogram.png) | ![PM2.5 Histogram KDE](outputs/figures/02_pm25_histogram_kde.png) |
+| **01 — PM2.5 Distribution** | **02 — PM2.5 Density Distribution** |
 
-### Temporal Dynamics
-| # | Chart Type | Artifact | Description & Key Analytical Insight |
-|---|:---|:---|:---|
-| 18 | **Time Series** | ![18](outputs/figures/18_timeseries_pm25.png) | Daily progression across 2024 showing synchronized meteorological impacts. |
-| 19 | **Multi-Series Progression**| ![19](outputs/figures/19_multi_timeseries.png) | Synchronized multi-indicator curves tracking temperature, wind, and pollution. |
-| 20 | **Rolling Average** | ![20](outputs/figures/20_rolling_average.png) | 7-day and 30-day moving trends smoothing high-frequency atmospheric noise. |
-| 21 | **Seasonal Profiles** | ![21](outputs/figures/21_seasonal_comparison.png) | Monthly trajectory capturing sharp winter peaks and summer clean periods. |
-| 22 | **Calendar Heatmap** | ![22](outputs/figures/22_calendar_heatmap.png) | ISO week vs day-of-week intensity matrix revealing episode clusters. |
+| Box Plot | Violin Plot |
+|---|---|
+| ![PM2.5 Boxplot](outputs/figures/03_pm25_boxplot.png) | ![PM2.5 Violin](outputs/figures/04_pm25_violin.png) |
+| **03 — Statistical Dispersion** | **04 — Distribution Shape** |
 
-### Geographic & Advanced Intelligence
-| # | Chart Type | Artifact | Description & Key Analytical Insight |
-|---|:---|:---|:---|
-| 23 | **City Location Map** | ![23](outputs/figures/23_city_map.png) | Spatial distribution of target monitoring network across European & Mediterranean coordinates. |
-| 24 | **Interactive Map** | [`outputs/figures/24_city_map_interactive.html`](outputs/figures/24_city_map_interactive.html) | Interactive Plotly geographic scatter with bubble sizing and tooltips. |
-| 25 | **Geographic Comparison**| ![25](outputs/figures/25_geographic_comparison.png) | Horizontal comparative bar annotated with exact latitude and longitude degrees. |
-| 26 | **PCA Visualization** | ![26](outputs/figures/26_pca_visualization.png) | First two principal components ($PC_1$, $PC_2$) explaining over $65\%$ of multi-sensor variance. |
-| 27 | **Cluster Regimes** | ![27](outputs/figures/27_cluster_visualization.png) | K-Means clustering identifying distinct atmospheric regimes (e.g. stagnant, windy, clean). |
-| 28 | **Urban Stress Index** | ![28](outputs/figures/28_radar_profile.png) | Normalized multi-attribute comparative profile ranking environmental pressure. |
-| 29 | **Faceted Density Grid** | ![29](outputs/figures/29_distribution_comparison.png) | Comparative multi-panel density grid highlighting inter-city modal variances. |
-| 30 | **Executive Dashboard** | ![30](outputs/figures/30_dashboard_overview.png) | 6-panel executive dashboard overview synthesizing key metrics and operational takeaways. (Interactive version: [`outputs/figures/30_dashboard_interactive.html`](outputs/figures/30_dashboard_interactive.html)) |
+| Density Curve | ECDF |
+|---|---|
+| ![PM2.5 Density](outputs/figures/05_pm25_density.png) | ![PM2.5 ECDF](outputs/figures/06_pm25_ecdf.png) |
+| **05 — Density Comparison** | **06 — Empirical Cumulative Distribution** |
+
+### 6.2 Comparative Analysis
+
+| Mean PM2.5 | Grouped PM Comparison |
+|---|---|
+| ![Mean PM2.5 Bar Chart](outputs/figures/07_mean_pm25_barchart.png) | ![PM Grouped Bar](outputs/figures/08_pm_grouped_bar.png) |
+| **07 — Average PM2.5 by City** | **08 — PM2.5 vs PM10** |
+
+| Temperature Comparison | Cleveland Dot Plot |
+|---|---|
+| ![Temperature Horizontal Bar](outputs/figures/09_temperature_horizontal_bar.png) | ![PM2.5 Dot Plot](outputs/figures/10_pm25_dot_plot.png) |
+| **09 — Temperature by City** | **10 — City Ranking** |
+
+| Monthly Heatmap | Small Multiples |
+|---|---|
+| ![Monthly City Heatmap](outputs/figures/11_monthly_city_heatmap.png) | ![Small Multiples](outputs/figures/12_small_multiples.png) |
+| **11 — City × Month Comparison** | **12 — Distribution by City** |
+
+### 6.3 Relationships and Correlations
+
+| Scatter Plot | Regression Analysis |
+|---|---|
+| ![Temperature PM2.5 Scatter](outputs/figures/13_scatter_temp_pm25.png) | ![Temperature PM2.5 Regression](outputs/figures/14_regression_temp_pm25.png) |
+| **13 — Temperature vs PM2.5** | **14 — Regression Relationship** |
+
+| Pair Plot | Bubble Chart |
+|---|---|
+| ![Variables Pairplot](outputs/figures/15_variables_pairplot.png) | ![Bubble Chart](outputs/figures/16_bubble_chart.png) |
+| **15 — Pairwise Variable Relationships** | **16 — Multivariable Comparison** |
+
+| Correlation Heatmap |
+|---|
+| ![Correlation Heatmap](outputs/figures/17_correlation_heatmap.png) |
+| **17 — Correlation Matrix** |
+
+### 6.4 Temporal Analysis
+
+| Time Series | Multiple Time Series |
+|---|---|
+| ![PM2.5 Time Series](outputs/figures/18_timeseries_pm25.png) | ![Multiple Time Series](outputs/figures/19_multi_timeseries.png) |
+| **18 — Daily PM2.5 Evolution** | **19 — Environmental Indicators Over Time** |
+
+| Rolling Average | Seasonal Comparison |
+|---|---|
+| ![Rolling Average](outputs/figures/20_rolling_average.png) | ![Seasonal Comparison](outputs/figures/21_seasonal_comparison.png) |
+| **20 — Moving Average Analysis** | **21 — Seasonal Pollution Patterns** |
+
+| Calendar Heatmap |
+|---|
+| ![Calendar Heatmap](outputs/figures/22_calendar_heatmap.png) |
+| **22 — Calendar-Based Pollution Patterns** |
+
+### 6.5 Geographic and Advanced Analytics
+
+| City Location Map | Geographic Comparison |
+|---|---|
+| ![City Map](outputs/figures/23_city_map.png) | ![Geographic Comparison](outputs/figures/25_geographic_comparison.png) |
+| **23 — City Locations** | **25 — Geographic Comparison** |
+
+| PCA Visualization | Cluster Regimes |
+|---|---|
+| ![PCA Visualization](outputs/figures/26_pca_visualization.png) | ![Cluster Visualization](outputs/figures/27_cluster_visualization.png) |
+| **26 — Principal Component Analysis** | **27 — Environmental Clustering** |
+
+| Urban Stress Index | Distribution Comparison |
+|---|---|
+| ![Radar Profile](outputs/figures/28_radar_profile.png) | ![Distribution Comparison](outputs/figures/29_distribution_comparison.png) |
+| **28 — Multidimensional Urban Profile** | **29 — Distribution Comparison** |
+
+### 6.6 Executive Dashboard
+
+![Executive Dashboard](outputs/figures/30_dashboard_overview.png)
+
+**30 — Executive Dashboard Overview**
+
+The dashboard is designed to consolidate key environmental indicators and comparative views into one analytical interface.
+
+### 6.7 Interactive Geographic Visualization
+
+[**Open Interactive City Map (HTML)**](outputs/figures/24_city_map_interactive.html)
+
+[**Open Interactive Executive Dashboard (HTML)**](outputs/figures/30_dashboard_interactive.html)
+
+These HTML files can be opened locally in a browser. GitHub does not generally render interactive HTML files directly inside the README.
 
 ---
 
-## 7. Key Analytical Findings & Evidence
+## 7. Exploratory Data Analysis
 
-Based on systematic statistical evaluation across the 3,660 harmonized daily observations:
+The exploratory analysis focuses on understanding the characteristics and relationships of the collected variables.
 
-### 1. Inter-City Particulate Disparity
-- **Observation**: Casablanca ($33.6^\circ\text{N}$) and Madrid ($40.4^\circ\text{N}$) exhibit elevated average $PM_{2.5}$ baselines ($25.4$ and $24.7\ \mu\text{g/m}^3$) compared to Lisbon ($20.9\ \mu\text{g/m}^3$) and Paris ($22.0\ \mu\text{g/m}^3$).
-- **Evidence**: Inter-city ANOVA/Kruskal-Wallis testing confirms statistically significant group differences ($p < 0.001$).
-- **Context**: Inland continental topographies (Madrid) and coastal Mediterranean trade winds with dust interactions (Casablanca) produce higher baseline burdens than Atlantic maritime perimeters (Lisbon).
+### Univariate Analysis
 
-### 2. Meteorological Ventilation & Dispersion Dynamics
-- **Observation**: Wind speed exhibits a consistent negative correlation with particulate concentration ($r = -0.32$ to $-0.45$, $p < 0.001$).
-- **Evidence**: Observations with wind velocity exceeding $15\text{ km/h}$ coincide with upper-quartile air cleanliness across all cities. Conversely, stagnant episodes ($< 8\text{ km/h}$) account for over $78\%$ of critical exposure spikes ($> 45\ \mu\text{g/m}^3$).
+- Mean, median, standard deviation, and quantiles.
+- Distribution shapes and skewness.
+- Missing-value analysis.
+- Outlier identification.
+- Frequency distributions.
 
-### 3. Thermal Inversion & Winter Vulnerability
-- **Observation**: Ambient temperature demonstrates an inverse association with particulate concentrations ($r = -0.28$, $p < 0.001$).
-- **Evidence**: Mean winter concentrations surpass summer levels by $32\%$ in Paris and $38\%$ in Madrid. Cooler boundary layer heights trap local residential heating emissions, creating acute seasonal vulnerabilities.
+### Bivariate Analysis
+
+- Pollution versus temperature.
+- Pollution versus wind speed.
+- Pollution versus humidity.
+- Relationships between PM2.5 and PM10.
+- Comparative analysis across cities.
+
+### Temporal Analysis
+
+- Daily and monthly patterns.
+- Seasonal variations.
+- Rolling averages.
+- Long-term environmental trends.
+- Periods with unusually high pollutant concentrations.
 
 ---
 
-## 8. Evidence-Based Urban Recommendations
+## 8. Statistical Analysis
 
-| # | Strategic Recommendation | Target Stakeholders | Implementation Timeline | Anticipated Impact |
-|:--|:---|:---|:---|:---|
-| **01** | **Dynamic Low-Emission Zones (LEZ)** | Municipal Traffic Control, Transport Ministry | Short Term (6–12 mos) | $15–25\%$ reduction in peak canyon exposure during meteorological stagnation windows ($< 8\text{ km/h}$). |
-| **02** | **Winter Heating Decarbonization** | Energy Ministries, Urban Planning Agencies | Medium Term (1–3 yrs) | $20–35\%$ decline in baseline winter $PM_{2.5}$ via solid-fuel stove phase-outs and district heating modernization. |
-| **03** | **Calibrated Micro-Sensor Densification** | Environmental Regulators, Public Health | Immediate (3–6 mos) | Hyper-local spatial exposure granularity supplementing regulatory reference stations. |
-| **04** | **Aerodynamic Green Ventilation Corridors** | City Architecture Boards, Urban Planners | Long Term (3–5 yrs) | Natural ventilation preservation, urban heat island mitigation, and barrier-based particulate filtration. |
+| Method | Purpose |
+|---|---|
+| Descriptive Statistics | Summarize distributions and variability. |
+| Pearson Correlation | Measure linear relationships. |
+| Spearman Correlation | Evaluate monotonic relationships. |
+| Hypothesis Testing | Examine differences between groups. |
+| ANOVA | Compare means under appropriate assumptions. |
+| Kruskal-Wallis | Compare distributions without requiring normality. |
+| Confidence Intervals | Quantify uncertainty around estimates. |
+| Linear Regression | Explore relationships between variables. |
+| PCA | Reduce dimensionality when justified. |
+| K-Means | Explore groups of similar environmental observations. |
+
+Statistical assumptions, sample sizes, missingness, and potential biases must be evaluated before interpreting results.
 
 ---
 
-## 9. Installation & Reproduction
+## 9. Analytical Insights and Recommendations
+
+The final analytical stage aims to transform statistical observations into understandable insights.
+
+Examples of questions addressed include:
+
+- Which cities show higher observed particulate concentrations?
+- During which periods are pollution levels elevated?
+- Which meteorological variables are associated with changes in pollutant concentrations?
+- How reliable are comparisons given differences in monitoring coverage?
+- What additional data would improve the analysis?
+
+Potential recommendation areas include:
+
+1. Improving air quality monitoring coverage.
+2. Identifying periods of elevated pollution.
+3. Supporting environmental monitoring programs.
+4. Improving access to reliable urban environmental data.
+5. Supporting evidence-based urban planning.
+
+Recommendations must be based on actual findings and acknowledge the limitations of the available datasets.
+
+---
+
+## 10. Installation and Setup
 
 ### Prerequisites
-- Python 3.11+
-- Git
 
-### Setup
+- Python 3.11 or higher.
+- Git.
+- Visual Studio Code or another Python-compatible IDE.
+- Internet connection for live API collection.
+
+### Clone the Repository
+
 ```bash
-# 1. Clone repository
-git clone https://github.com/your-username/data-ai-engineering-lab.git
-cd data-ai-engineering-lab/04-global-urban-intelligence
+git clone https://github.com/marwaneproo/global-urban-intelligence.git
 
-# 2. Create and activate a virtual environment
+cd global-urban-intelligence
+```
+
+### Create a Virtual Environment
+
+**Windows PowerShell:**
+
+```powershell
 python -m venv .venv
-# On Windows:
-.venv\Scripts\activate
-# On Linux/macOS:
-source .venv/bin/activate
 
-# 3. Install dependencies
+.venv\Scripts\Activate.ps1
+```
+
+**Linux / macOS:**
+
+```bash
+python3 -m venv .venv
+
+source .venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
+python -m pip install --upgrade pip
+
 pip install -r requirements.txt
 ```
 
-### Execution
-```bash
-# Run complete offline demo pipeline (synthetic demonstration, zero external API keys needed)
-python run_pipeline.py --demo
+---
 
-# Run live API ingestion (requires active internet access; falls back automatically if offline)
+## 11. Running the Project
+
+If supported by the implemented pipeline:
+
+### Offline Demonstration Mode
+
+```bash
+python run_pipeline.py --demo
+```
+
+### Live Data Collection Mode
+
+```bash
 python run_pipeline.py --live
 ```
 
-### Running Tests
+### Run Tests
+
 ```bash
 pytest -q
 ```
 
 ---
 
-## 10. Jupyter Notebook Guide
+## 12. Jupyter Notebook Guide
 
-The `notebooks/` directory provides an interactive educational walkthrough of every pipeline stage:
-
-| Notebook | Focus | Primary Outputs / Concepts |
-|:---|:---|:---|
-| `01-business-understanding.ipynb` | Problem Framing | Stakeholder mapping, research questions, system bounds |
-| `02-data-collection.ipynb` | Data Extraction | OpenAQ, Open-Meteo, World Bank API clients & fallback engines |
-| `03-data-profiling.ipynb` | Data Quality Profiling | Automated schema checks, duplicate scans, missingness reporting |
-| `04-data-cleaning.ipynb` | Standardization | Snake_case conversion, UTC parsing, zero-replacement avoidance |
-| `05-data-transformation.ipynb` | Feature Engineering | Season classification, calendar attributes, rolling averages, AQI |
-| `06-data-integration.ipynb` | Data Integration | Join diagnostics, referential integrity, macro vs micro demographics |
-| `07-exploratory-analysis.ipynb` | Exploratory Analysis | Univariate stats, bivariate scatter, seasonal profiles |
-| `08-statistical-analysis.ipynb` | Statistical Modeling | Normality tests, correlation matrices with p-values, PCA, clustering |
-| `09-data-visualization.ipynb` | Visualization Gallery | Displaying the full 30-chart publication visualization catalog |
-| `10-insights-and-recommendations.ipynb`| Actionable Synthesis | Empirical findings, municipal policy recommendations, roadmap |
+| Notebook | Subject | Main Focus |
+|---|---|---|
+| 01 | Business Understanding | Problem definition and research questions. |
+| 02 | Data Collection | API extraction and source documentation. |
+| 03 | Data Profiling | Data quality, schemas, and missing values. |
+| 04 | Data Cleaning | Standardization and data preparation. |
+| 05 | Data Transformation | Feature engineering and temporal variables. |
+| 06 | Data Integration | Dataset integration and join validation. |
+| 07 | Exploratory Analysis | Univariate, bivariate, and temporal analysis. |
+| 08 | Statistical Analysis | Statistical tests, correlations, and advanced methods. |
+| 09 | Data Visualization | Visual exploration and chart generation. |
+| 10 | Insights and Recommendations | Findings, interpretation, and recommendations. |
 
 ---
 
-## 11. Known Limitations & Future Roadmap
+## 13. Data Quality and Reproducibility
 
-### Methodological Limitations
-1. **Station Spatial Representativeness**: A limited set of official monitoring stations represents whole metropolitan perimeters; hyper-local micro-climates and street canyons may deviate.
-2. **Country vs City Conflation**: World Bank demographic indicators represent macro-national dynamics and cannot reflect intra-city neighborhood densities.
-3. **Chemical Speciation**: Measurements quantify total particulate mass ($PM_{2.5}$) without chemical composition (black carbon, secondary nitrates/sulfates).
+The pipeline addresses:
 
-### Future Roadmap
-- [ ] Integration of Copernicus Atmosphere Monitoring Service (CAMS) satellite reanalysis rasters.
-- [ ] Machine learning forecasting models (Temporal Fusion Transformers / XGBoost) for 48-hour air quality prediction.
-- [ ] Automated CI/CD testing workflows via GitHub Actions.
-- [ ] Interactive Streamlit/Dash application for live real-time municipal monitoring.
+- Missing values.
+- Duplicate records.
+- Invalid measurements.
+- Inconsistent units.
+- Incorrect timestamps.
+- Inconsistent city identifiers.
+- Data-source provenance.
+- Temporal and geographical alignment.
+
+Reproducibility principles:
+
+- Preserve raw data whenever possible.
+- Keep transformations modular.
+- Document assumptions.
+- Use fixed random seeds for synthetic demonstrations.
+- Separate real and synthetic observations.
+- Validate outputs before analysis.
+- Avoid presenting synthetic values as observed facts.
 
 ---
 
-## 12. Author & Portfolio Notice
+## 14. Limitations
 
-**Project**: Global Urban Intelligence: Data-Driven Analysis of Urban Environmental Conditions  
-**Lab**: `data-ai-engineering-lab/`  
-**License**: MIT License  
-**Engineering Standard**: Production-grade modular Python, reproducible seed-locked workflows, zero-placeholder implementation.
-#   g l o b a l - u r b a n - i n t e l l i g e n c e  
- 
+**Monitoring Coverage:** The number and distribution of monitoring stations can differ considerably between cities.
+
+**Geographic Resolution:** Country-level demographic indicators cannot be used as direct substitutes for city-level population statistics.
+
+**Data Availability:** External APIs may have different historical coverage, measurement frequencies, and availability conditions.
+
+**Measurement Comparability:** Different monitoring technologies and collection practices may affect comparisons.
+
+**Causal Interpretation:** Statistical associations between weather and pollution do not independently establish causal relationships.
+
+---
+
+## 15. Future Improvements
+
+- Integration of Copernicus atmospheric datasets.
+- Additional environmental indicators.
+- More detailed geographical data.
+- Advanced air quality forecasting.
+- XGBoost-based predictive models.
+- Temporal forecasting architectures.
+- Automated data quality monitoring.
+- GitHub Actions CI/CD integration.
+- Interactive dashboards using Streamlit or Dash.
+- Cloud-based data storage and orchestration.
+
+---
+
+## 16. Technologies
+
+| Category | Technologies |
+|---|---|
+| Programming | Python |
+| Data Manipulation | Pandas, NumPy |
+| Data Collection | REST APIs, Requests |
+| Data Analysis | SciPy, Statsmodels, Scikit-learn |
+| Visualization | Matplotlib, Seaborn, Plotly |
+| Notebooks | Jupyter |
+| Testing | Pytest |
+| Version Control | Git, GitHub |
+
+The actual dependencies and technologies used should be confirmed against `requirements.txt` and the implemented source code.
+
+---
+
+## 17. Author
+
+**Marwane El Abbadi**
+
+Data & AI Engineering Student
+
+Interested in Data Engineering, Analytics, Machine Learning, and AI-powered data platforms.
+
+GitHub: [@marwaneproo](https://github.com/marwaneproo)
+
+Project Repository: [Global Urban Intelligence](https://github.com/marwaneproo/global-urban-intelligence)
+
+---
+
+## License
+
+If an MIT `LICENSE` file is included in the repository, the project is distributed under the MIT License.
+
+---
+
+**From raw data to meaningful insights.**  
+**From insights to better decisions.**
