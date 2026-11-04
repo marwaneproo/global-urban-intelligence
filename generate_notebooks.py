@@ -7,6 +7,7 @@ for the Global Urban Intelligence project.
 import json
 import os
 
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 NOTEBOOKS_DIR = os.path.join(PROJECT_ROOT, "notebooks")
 os.makedirs(NOTEBOOKS_DIR, exist_ok=True)
@@ -381,6 +382,7 @@ notebooks_map = {
     "09-data-visualization.ipynb": nb09,
     "10-insights-and-recommendations.ipynb": nb10,
 }
+
 
 for filename, nb_dict in notebooks_map.items():
     dest = os.path.join(NOTEBOOKS_DIR, filename)
