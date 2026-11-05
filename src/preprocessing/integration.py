@@ -52,6 +52,7 @@ def integrate_air_quality_weather(
     }
 
     if aq_df.empty:
+        
         logger.warning("Air-quality DataFrame is empty — returning empty result.")
         report["status"] = "skipped_empty_aq"
         return pd.DataFrame(), report
