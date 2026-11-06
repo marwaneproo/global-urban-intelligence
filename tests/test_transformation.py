@@ -81,6 +81,7 @@ def test_compute_rolling_averages(sample_timeseries_df):
         date_col="date",
         group_col="city",
     )
+    
     assert "value_rolling_7" in df_rolling.columns
     assert "value_rolling_30" in df_rolling.columns
 
