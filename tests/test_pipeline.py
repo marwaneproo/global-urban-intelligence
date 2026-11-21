@@ -47,6 +47,7 @@ def test_processed_data_not_empty(executed_pipeline):
     csv_path = os.path.join(PROJECT_ROOT, "data", "processed", "urban_analytics.csv")
     df = pd.read_csv(csv_path)
     assert len(df) > 500, f"Expected > 500 rows, found {len(df)}"
+    
 
 
 def test_processed_data_columns(executed_pipeline):
